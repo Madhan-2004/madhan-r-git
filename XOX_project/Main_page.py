@@ -1,0 +1,24 @@
+from XOX_project.Single_player import SinglePlayer
+from XOX_project.Multi_player import MultiPlayer
+
+
+def main():
+    game_type = input("SINGLE PLAYER OR MULTI PLAYER (S OR M): ").upper()
+    while game_type not in ["S", "M"]:
+        print('***ENTER PROPER INPUT***')
+        game_type = input("SINGLE PLAYER OR MULTI PLAYER (S OR M): ").upper()
+
+    if game_type == "S":
+        difficulty = input("EASY MODE OR HARD MODE (E OR H): ").upper()
+        while difficulty not in ["E", "H"]:
+            print('***ENTER PROPER INPUT***')
+            difficulty = input("EASY MODE OR HARD MODE (E OR H): ").upper()
+        game = SinglePlayer(difficulty)
+    else:
+        game = MultiPlayer()
+
+    game.play()
+
+
+if __name__ == "__main__":
+    main()
