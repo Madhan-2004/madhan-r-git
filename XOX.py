@@ -7,25 +7,22 @@ def printXOX(i):
           i[7], "|", i[8])
 
 
-def check(i):
-    if i not in che:
-        print("***Entered a Invalid input***")
-        exit()
-    if i in rep:
-        print("***REPEATED POSITION***")
-        exit()
-    rep.append(i)
-
-
 def get(i, st):
     print("\n", st, "'s turn...\n")
-    position = -1
-    try:
-        position = int(input("Enter position : "))
-    except ValueError:
-        print("\n***Enter a Proper Position***")
-        exit()
-    check(position)
+    global position
+    while True:
+        try:
+            position = int(input("Enter position : "))
+        except ValueError:
+            pass
+
+        if (position not in che) or (position in rep):
+            temp = [x for x in avl if x not in rep]
+            print("***Invalid input***\nChoose from these ", temp, '\n')
+        else:
+            break
+
+    rep.append(position)
     if position == -1:
         print("***", st, " surrenders***")
         exit()
@@ -42,9 +39,10 @@ def get(i, st):
 def easy_move(i, st1):
     tm.sleep(1.2)
     s = set(rep)
+
     pc_move = [x for x in pos if x not in s]
     move = rn.choice(pc_move)
-    check(move)
+    rep.append(move)
     xox[move - 1] = st1
     printXOX(xox)
     if (i[0] == i[1] == i[2] == st1) or (i[3] == i[4] == i[5] == st1) or \
@@ -129,7 +127,7 @@ def hard_move(i, st):
             xox[move - 1] = st
 
     print("Position : ", move)
-    check(move)
+    rep.append(move)
     xox[move-1] = st
     printXOX(xox)
     if (i[0] == i[1] == i[2] == st) or (i[3] == i[4] == i[5] == st) or \
@@ -182,7 +180,7 @@ def spl_move(i, st2):
         move = rn.choice(pc_move)
 
     print("Position : ", move)
-    check(move)
+    rep.append(move)
     xox[move-1] = st2
     printXOX(xox)
 
@@ -190,18 +188,38 @@ def spl_move(i, st2):
 xox = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 pos = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 che = [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+avl = [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 rep = [0]
 
 sm = str(input("SINGLE PLAYER OR MULTI PLAYER (S OR M) : "))
+while True:
+    if sm in ("S", "M", "s", "m"):
+        break
+    else:
+        print('***ENTER PROPER INPUT***')
+        sm = str(input("SINGLE PLAYER OR MULTI PLAYER (S OR M) : "))
+
 # SINGLE
 if sm.lower() == "s":
     mode = str(input("EASY MODE OR HARD MODE (E OR H) : "))
+    while True:
+        if mode in ("E", "H", "e", "h"):
+            break
+        else:
+            print('***ENTER PROPER INPUT***')
+            mode = str(input("EASY MODE OR HARD MODE (E OR H) : "))
     # EASY
     if mode.lower() == "e":
         print("Let's play XOX\nThis is the position...")
         printXOX(pos)
         print("\nand -1 for surrender...\nSo Choose your side...")
         start = str(input("X or O : "))
+        while True:
+            if start in ("X", "O", "x", "o"):
+                break
+            else:
+                print('***ENTER PROPER INPUT***')
+                start = str(input("X or O : "))
         if start.lower() == "x":
             for count in range(4):
                 get(xox, "X")
@@ -216,14 +234,18 @@ if sm.lower() == "s":
                 easy_move(xox, "X")
             get(xox, "O")
             print("CONGRATS ITS A DRAW")
-        else:
-            print("Enter valid input bruh")
     # HARD
     elif mode.lower() == "h":
         print("Let's play XOX\nThis is the position...")
         printXOX(pos)
         print("\nand -1 for surrender...\nSo choose your side...")
         start = str(input("X or O : "))
+        while True:
+            if start in ("X", "O", "x", "o"):
+                break
+            else:
+                print('***ENTER PROPER INPUT***')
+                start = str(input("X or O : "))
         if start.lower() == "x":
             get(xox, "X")
             print("\nPC'S TURN...")
@@ -246,17 +268,18 @@ if sm.lower() == "s":
                 hard_move(xox, "X")
             get(xox, "O")
             print("CONGRATS ITS A DRAW")
-        else:
-            print("Enter valid input bruh")
-    else:
-
-        print("Invalid game mode")
 # MULTI
 elif sm.lower() == "m":
     print("Let's play XOX\nThis is the position...")
     printXOX(pos)
     print("\nand -1 for surrender...\nShall we start! who's gonna play first...")
     start = str(input("X or O : "))
+    while True:
+        if start in ("X", "O", "x", "o"):
+            break
+        else:
+            print('***ENTER PROPER INPUT***')
+            start = str(input("X or O : "))
     if start.lower() == "x":
         for count in range(4):
             get(xox, "X")
@@ -269,8 +292,4 @@ elif sm.lower() == "m":
             get(xox, "X")
         get(xox, "O")
         print("CONGRATS GUYS ITS A DRAW")
-    else:
-        print("Enter valid input bruh")
 
-else:
-    print("Invalid input Game mode")
