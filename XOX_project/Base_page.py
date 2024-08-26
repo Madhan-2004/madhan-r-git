@@ -29,7 +29,7 @@ class TicTacToe:
             try:
                 position = int(input("Enter position: "))
                 if position == -1:
-                    p2='X' if symbol=="O" else "O"
+                    p2 = 'X' if symbol == "O" else "O"
                     print(f"\n{symbol} surrenders\n{p2} WON!")
                     exit()
                 if position in self.available_positions:

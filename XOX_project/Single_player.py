@@ -62,7 +62,6 @@ class SinglePlayer(TicTacToe):
         # Take any available position (shouldn't reach this in a properly played game)
         return rn.choice(list(self.available_positions))
 
-
     def play(self):
         print("Let's play Tic Tac Toe\nThis is the position...")
         initial_board()
