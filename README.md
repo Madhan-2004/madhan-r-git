@@ -1,8 +1,9 @@
 ﻿# madhan-r-git
-**Tic Tac Toe Game**
+<u>**Tic Tac Toe Game**</u>
+
 **Overview:**
 This is a simple console-based Tic Tac Toe game implemented in Python. The game offers both single-player and multiplayer modes. In single-player mode, you can choose between easy and hard difficulty levels, while in multiplayer mode, two players can play against each other.
-
+<
 **Features:**
 Single Player Mode:
 Easy Mode: The AI makes random moves.
@@ -12,6 +13,7 @@ Multiplayer Mode:
 Two players can play against each other on the same console.
 
 **Game Modes:**
+
 Single Player:
 Play against the computer.
 Choose between Easy or Hard difficulty.
@@ -22,6 +24,7 @@ Both players take turns on the same console.
 
 
 **How to Play:**
+
 Run the Game:
 Execute the main() function in the script.
 
