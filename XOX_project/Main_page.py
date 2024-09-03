@@ -3,10 +3,12 @@ from XOX_project.Multi_player import MultiPlayer
 
 
 def main():
-    game_type = input("SINGLE PLAYER OR MULTI PLAYER (S OR M): ").upper()
-    while game_type not in ["S", "M"]:
-        print('***ENTER PROPER INPUT***')
+    while True:
         game_type = input("SINGLE PLAYER OR MULTI PLAYER (S OR M): ").upper()
+        if game_type in ["S", "M"]:
+            break
+        else:
+            print('***ENTER PROPER INPUT***')
 
     if game_type == "S":
         difficulty = input("EASY MODE OR HARD MODE (E OR H): ").upper()

@@ -6,10 +6,12 @@ class MultiPlayer(TicTacToe):
         print("Let's play Tic Tac Toe\nThis is the position...")
         initial_board()
         print("\nand -1 for surrender...\nShall we start! who's gonna play first...")
-        start = input("X or O: ").upper()
-        while start not in ["X", "O"]:
-            print('***ENTER PROPER INPUT***')
+        while True:
             start = input("X or O: ").upper()
+            if start in ["X", "O"]:
+                break
+            else:
+                print('***ENTER PROPER INPUT***')
         player1_symbol = start
         player2_symbol = "O" if player1_symbol == "X" else "X"
 
