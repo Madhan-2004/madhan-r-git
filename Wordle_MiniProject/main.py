@@ -26,7 +26,7 @@ def main():
                 wrong = True
                 break
 
-        if (len(text) != 5) or ():
+        if len(text) != 5:
             print("Enter a proper word")
 
         elif wrong:
