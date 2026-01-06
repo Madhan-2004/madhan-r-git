@@ -15,16 +15,22 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Automation') {
             steps {
-                sh 'pytest tests'
+                sh 'pytest --alluredir=reports'
+            }
+        }
+
+        stage('Publish Report') {
+            steps {
+                allure includeProperties: false, jdk: '', results: [[path: 'reports']]
             }
         }
 
         stage('Deploy') {
             when { success() }
             steps {
-                sh 'echo "Deployment successful"'
+                sh 'echo "Deployment Approved"'
             }
         }
     }

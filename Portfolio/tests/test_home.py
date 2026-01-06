@@ -1,13 +1,6 @@
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+from pages.home_page import HomePage
 
-
-def test_homepage():
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
-
+def test_homepage(driver):
     driver.get("http://localhost:5000")
-    assert "Login Successful" in driver.page_source
-
-    driver.quit()
+    home = HomePage(driver)
+    assert "Login Successful" in home.get_text()
