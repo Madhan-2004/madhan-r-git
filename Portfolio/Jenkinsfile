@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Start App') {
+            steps {
+                sh 'nohup python app/app.py &'
+                sh 'sleep 5'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'pytest tests'
+            }
+        }
+
+        stage('Deploy') {
+            when { success() }
+            steps {
+                sh 'echo "Deployment successful"'
+            }
+        }
+    }
+}
